@@ -2,8 +2,8 @@
 
 defaults:
   - _self_
-  - category: chair.yaml
-  - model: phase1.yaml
+  - category: car.yaml
+  - model: phase2.yaml
   - callbacks: default.yaml
   - logger: tensorboard.yaml # multi_loggers.yaml
   - trainer: default.yaml
@@ -11,7 +11,7 @@ defaults:
   - hydra: default.yaml
   - debug: null
 
-name: default
+name: car/phase2
 seed: 63
 
 gpus: [0]

@@ -1,7 +1,7 @@
 import hydra
 import pytorch_lightning as pl
 from salad.utils import sysutil
-@hydra.main(config_path="configs", config_name="train.yaml")
+@hydra.main(config_path="configs", config_name="train.yaml", version_base = "1.1")
 def main(config):
     pl.seed_everything(63)
     sysutil.print_config(config, ("callbacks", "logger", "paths", "debug", "data", "trainer", "model"))

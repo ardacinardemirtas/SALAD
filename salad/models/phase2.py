@@ -68,7 +68,7 @@ class Phase2Model(BaseModel):
                 "'num_samples_or_gaus' should be int, torch.Tensor or np.ndarray."
             )
 
-        x_T = torch.randn([batch_size, 16, 512]).to(self.device)
+        x_T = torch.randn([batch_size, 5, 256]).to(self.device)
         cond = cond.to(self.device)
 
         traj = {self.var_sched.num_steps: x_T}

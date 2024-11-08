@@ -4,11 +4,11 @@ defaults:
 _target_: salad.models.phase2.Phase2Model
 network:
   _target_: salad.model_components.network.CondDiffNetwork
-  input_dim: 512
+  input_dim: 256
   residual: true
-  context_dim: 16 # gaussian condition dim.
-  context_embedding_dim: 512
-  embedding_dim: 512
+  context_dim: 10 # condition dim.
+  context_embedding_dim: 256
+  embedding_dim: 256
   encoder_use_time: false
   encoder_type: transformer
   decoder_type: transformer_encoder # we don't use cross attention.
