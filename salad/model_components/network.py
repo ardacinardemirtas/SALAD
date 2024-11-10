@@ -21,6 +21,7 @@ class UnCondDiffNetwork(nn.Module):
         self.residual = residual
         self.__dict__.update(kwargs)
         self.hparams = DotMap(self.__dict__)
+        self.pos_encoding = PositionalEncoding(d_hid=self.hparams.embedding_dim, n_position=200) # d_hid should be size of latent (=10), n_position should be larger than number of parts (>5)
 
         self._build_model()
 
@@ -85,6 +86,7 @@ class UnCondDiffNetwork(nn.Module):
 
         ctx = time_emb
         x_emb = self.embedding(x)
+        x_emb = self.pos_encoding(x_emb)  # Apply positional encoding here
 
         out = self.encoder(x_emb, ctx=ctx)
 
@@ -103,6 +105,7 @@ class CondDiffNetwork(nn.Module):
         self.residual = residual
         self.__dict__.update(kwargs)
         self.hparams = DotMap(self.__dict__)
+        self.pos_encoding = PositionalEncoding(d_hid=self.hparams.embedding_dim, n_position=200) # d_hid should be size of latent (=256), n_position should be larger than number of parts (>5)
 
         self._build_model()
 
@@ -205,8 +208,7 @@ class CondDiffNetwork(nn.Module):
         Decoding
         """
         out = self.query_embedding(x)
-        if self.hparams.get("use_pos_encoding"):
-            out = self.pos_encoding(out)
+        out = self.pos_encoding(out)
 
         if self.hparams.decoder_type == "transformer_encoder":
             try:

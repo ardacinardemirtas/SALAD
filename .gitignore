@@ -13,3 +13,4 @@ salad/data/spaghetti_airplane_latents_mean_std.hdf5
 salad/data/spaghetti_airplane_latents.hdf5
 salad/data/nic_data/latents.pth
 salad/data/nic_data/poses.pth
+commands.txt
